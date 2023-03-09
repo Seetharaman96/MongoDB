@@ -5,8 +5,12 @@ import { auth } from "../middleware/auth.js";
 
 
 router.get("/", async function (request, response) {
-    const movies = await getAllMovies();
-    response.send(movies);
+      console.log(request.query);
+      if(request.query.rating){
+            request.query.rating = + request.query.rating //string('8') to number(8)
+      }
+      let movies = await getAllMovies(request.query);
+      response.send(movies);
 });
   
 router.get("/:id", async function (request, response) {

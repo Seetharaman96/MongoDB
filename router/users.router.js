@@ -43,7 +43,7 @@ router.post("/login", async function(request, response){
   let userFromDb = await getUserByName(userName);
   console.log(userFromDb);
   if(!userFromDb){
-    response.status(400).send({message: "Invalid credentials"})
+    response.status(401).send({message: "Invalid credentials"})
   }else{
     let storedDbPassword = userFromDb.password;
     let isPasswordCheck = await bcrypt.compare(password, storedDbPassword);
@@ -52,7 +52,7 @@ router.post("/login", async function(request, response){
       let token = jwt.sign({id: userFromDb._id}, process.env.SECRET_KEY)
       response.send({message: "Login successful", token: token})
     }else{
-      response.status(400).send({message: "Invalid credentials"})
+      response.status(401).send({message: "Invalid credentials"})
     }
   }
 });

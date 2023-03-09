@@ -12,6 +12,6 @@ export async function createMovies(data) {
 export async function getMovieById(id) {
       return await client.db("b42wd2").collection("movies").findOne({ id: id });
 }
-export async function getAllMovies() {
-      return await client.db("b42wd2").collection("movies").find({}).toArray();
+export async function getAllMovies(query) {
+      return await client.db("b42wd2").collection("movies").find(query).toArray();
 }
