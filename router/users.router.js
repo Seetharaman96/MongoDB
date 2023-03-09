@@ -4,7 +4,6 @@ import { createUser, getUserByName } from "../service/users.service.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
-import { auth } from "../middleware/auth.js";
 
 
 async function genterateHashedPassword(password){
@@ -39,7 +38,7 @@ router.post("/signup", async function(request, response){
 
 // -------------------------------login---------------------------------------
 
-router.post("/login", auth, async function(request, response){
+router.post("/login", async function(request, response){
   let { userName, password } = request.body;
   let userFromDb = await getUserByName(userName);
   console.log(userFromDb);
