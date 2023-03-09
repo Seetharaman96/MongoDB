@@ -5,7 +5,8 @@ import express, { request } from "express"; // "type": "module"
 import { MongoClient } from "mongodb";
 import moviesRouter from "./router/movies.router.js";
 import cors from 'cors';
-import bcrypt from "bcrypt";
+import usersRouter from "./router/users.router.js";
+
 
 const app = express();
 
@@ -20,13 +21,14 @@ console.log("Mongo is connected !!!  ");
 
 app.use(cors());
 
-app.use(express.json())
+app.use(express.json());
 
 app.get("/", function (request, response) {
     response.send("🙋‍♂️, 🌏 🎊✨🤩");
 });
 
 app.use("/movies", moviesRouter);
+app.use("/users", usersRouter);
 const mobiles = [
   {
     "model": "OnePlus 9 5G",
