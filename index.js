@@ -51,7 +51,14 @@ const mobiles = [
     "company": "Xiomi"
   }
 ]
-app.get("/mobiles", function(request, response){
-    response.send(mobiles);
+app.get("/mobiles", async function(request, response){
+  const result = await client.db("b42wd2").collection("mobiles").find({}).toArray();
+  response.send(result);
 })
+app.post("/mobiles", async function(request, response){
+  const data = request.body;
+  const result = await client.db("b42wd2").collection("mobiles").insertMany(data)
+  response.send(result);
+});
+
 app.listen(PORT, () => console.log(`The server started in: ${PORT} ✨✨`));

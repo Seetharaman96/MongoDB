@@ -57,5 +57,3 @@ router.post("/login", async function(request, response){
   }
 });
 export default router;
-
-
