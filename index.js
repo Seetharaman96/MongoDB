@@ -6,6 +6,7 @@ import { MongoClient } from "mongodb";
 import moviesRouter from "./router/movies.router.js";
 import cors from 'cors';
 import usersRouter from "./router/users.router.js";
+import { auth } from './middleware/auth.js';
 
 
 const app = express();
@@ -51,7 +52,7 @@ const mobiles = [
     "company": "Xiomi"
   }
 ]
-app.get("/mobiles", async function(request, response){
+app.get("/mobiles", auth, async function(request, response){
   const result = await client.db("b42wd2").collection("mobiles").find({}).toArray();
   response.send(result);
 })

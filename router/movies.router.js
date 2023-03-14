@@ -1,7 +1,7 @@
 import express from "express";
+import { auth } from "../middleware/auth.js";
 import { getAllMovies, getMovieById, createMovies, updateMovieById, deleteMovieById } from "../service/movies.service.js";
 const router = express.Router();
-import { auth } from "../middleware/auth.js";
 
 
 router.get("/", async function (request, response) {
